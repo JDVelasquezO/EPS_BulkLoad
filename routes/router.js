@@ -7,5 +7,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/bulkLoadUser', controller.bulkLoadUsers);
+router.get('/cleanData', controller.cleanUsers);
 
 module.exports = router;
