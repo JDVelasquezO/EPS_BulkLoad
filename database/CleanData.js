@@ -1,14 +1,12 @@
 const queryCleanUser = `
     USE dev_deppa;
     
-    delete from Temp where Nombre = '';
-    
-    delete from Temp where Id in (
-        select t.Id from
+    delete from Temp where Temp.CUI in (
+        select t.CUI from
             (select *, row_number() over (
-                partition by Temp.Nombre, Temp.Apellido order by Temp.Nombre
+                partition by Temp.REGISTRO, Temp.CUI order by Temp.REGISTRO, Temp.CUI
             ) as number
-        from Temp) t
+            from Temp) t
         where number > 1
     );
 `;
