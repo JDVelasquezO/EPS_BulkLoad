@@ -7,7 +7,7 @@ const queryUserBulk = `
         REGISTRO varchar(20),
         CUI varchar(20),
         NOMBRE_COMPLETO varchar(70),
-        FECHA_NAC varchar(50),
+        FECHA_NAC varchar(20),
         CODIGO varchar(20),
         DEPENDENCIA varchar(80),
         EMAIL varchar(80)
