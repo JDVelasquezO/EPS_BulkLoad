@@ -14,6 +14,15 @@ const queryInsertUser = `
                     CUI, '', CURDATE(), CURDATE(), 1,
                     null
     from Temp;
+    
+    insert into unidad_academica_has_usuario (idUnidadAcademicaUsuario, descripcion,
+        fecha_creacion, fecha_modificacion, idEstado, idUnidadAcademica, idUsuario, deleted_at)
+    select null, DEPENDENCIA, CURDATE(),
+           CURDATE(), 1,
+           ua.idUnidadAcademica, u.idUsuario, null
+    from Temp
+    inner join usuario u on u.reg_tra COLLATE utf8mb4_0900_ai_ci = Temp.REGISTRO
+    inner join unidad_academica ua on LOWER(ua.nombre) COLLATE utf8mb4_0900_ai_ci = LOWER(Temp.DEPENDENCIA);
 `;
 
 module.exports = queryInsertUser;

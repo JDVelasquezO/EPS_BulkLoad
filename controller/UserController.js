@@ -2,6 +2,7 @@ const conn = require("../config/conn");
 const queryUserBulk = require("../database/UserBulk");
 const queryCleanUser = require("../database/CleanData");
 const queryInsertUser = require("../database/insertUser");
+const queryDeleteDataUser = require("../database/deleteData");
 const controller = {};
 
 controller.bulkLoadUsers = (req, res) => {
@@ -24,6 +25,15 @@ controller.cleanUsers = (req, res) => {
 
 controller.insertUser = (req, res) => {
     conn.query(queryInsertUser, (err, data) => {
+        res.json({
+            error: err,
+            results: data
+        })
+    })
+}
+
+controller.deleteDataUser = (req, res) => {
+    conn.query(queryDeleteDataUser, (err, data) => {
         res.json({
             error: err,
             results: data
