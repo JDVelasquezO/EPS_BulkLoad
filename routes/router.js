@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 
 router.get('/bulkLoadUser', controller.bulkLoadUsers);
 router.get('/cleanData', controller.cleanUsers);
+router.get('/insertUser', controller.insertUser);
 
 module.exports = router;
