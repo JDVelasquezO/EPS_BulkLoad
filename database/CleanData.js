@@ -1,8 +1,8 @@
 const queryCleanUser = `
     USE dev_deppa;
     
-    -- Elimina registros vacíos
-    delete from Temp where Temp.REGISTRO = 'REGISTRO';
+    -- Elimina encabezado y registros vacíos
+    delete from Temp where Temp.REGISTRO = 'REGISTRO' or Temp.REGISTRO = '';
     
     -- Elimina repetidos
     delete from Temp where Temp.CUI in (
