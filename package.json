@@ -7,12 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "JDVelasquezO",
   "license": "ISC",
-  "description": "",
+  "description": "Node server for EPS (USAC)",
   "dependencies": {
     "express": "^4.21.1",
-    "fast-csv": "^5.0.1",
     "mysql": "^2.18.1",
     "nodemon": "^3.1.7"
   }
