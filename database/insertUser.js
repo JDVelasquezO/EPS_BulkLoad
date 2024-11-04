@@ -19,6 +19,7 @@ const queryInsertUser = `
                     null
     from Temp;
     
+    -- Create of temporal for code dependency
     DROP TABLE IF EXISTS temp_code_dependency;
     CREATE TABLE IF NOT EXISTS temp_code_dependency (
         csv int,
@@ -33,6 +34,7 @@ const queryInsertUser = `
     IGNORE 1 LINES
     (csv, db);
     
+    -- Insert user with correct ID
     insert into unidad_academica_has_usuario (idUnidadAcademicaUsuario, descripcion,
         fecha_creacion, fecha_modificacion, idEstado, idUnidadAcademica, idUsuario, deleted_at)
     select null, DEPENDENCIA, CURDATE(),
@@ -42,6 +44,12 @@ const queryInsertUser = `
     inner join usuario u on u.reg_tra COLLATE utf8mb4_0900_ai_ci = Temp.REGISTRO
     inner join temp_code_dependency tcd on tcd.csv = Temp.CODIGO
     inner join unidad_academica ua on ua.idUnidadAcademica = tcd.db;
+    
+    -- Insert user with correct rol
+    insert into usuario_has_rol (descripcion, fecha_creacion, fecha_modificacion, idUsuario, idRol, idEstado, deleted_at)
+    select distinct concat(nombre, ' con rol de docente'), curdate(), curdate(),
+           idUsuario, 3, 1, null
+    from usuario;
 `;
 
 module.exports = queryInsertUser;
