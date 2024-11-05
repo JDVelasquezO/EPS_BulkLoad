@@ -2,20 +2,19 @@
 - curl > 7.81.0
 - node > 20.18.0
 
+# Static files must be in folder `/tmp`
+
+# Configure static files
+`mysql> show global variables like 'local_infile';`
+
+`mysql> SET GLOBAL local_infile=true;`
+
+`mysql> quit`
+
 # Start server
 ```npm install```
 
 ```npm start```
-
-# Static files
-```sudo cp ./BulkLoadServer/res/PROFESORES.csv /var/lib/mysql-files```
-
-```sudo cp ./BulkLoadServer/res/view_code_dependency.csv /var/lib/mysql-files```
-
-# Configure static files
-`mysql> show global variables like 'local_infile';`
-`mysql> SET GLOBAL local_infile=true;`
-`mysql> quit`
 
 # Endpoints
 | Método | Endpoint          | Puerto | Descripción                                                                                        | Body                           |
