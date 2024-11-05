@@ -12,7 +12,7 @@ controller.bulkLoadUsers = (req, res) => {
         conn.query(queryUserBulk, (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "Usuarios cargados en tabla Temp"
             })
         })
     } catch (e) {
@@ -26,7 +26,7 @@ controller.cleanUsers = (req, res) => {
         conn.query(queryCleanUser, (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "Usuarios duplicados y celdas vacías eliminadas"
             })
         })
     } catch (e) {
@@ -39,7 +39,7 @@ controller.insertUser = (req, res) => {
         conn.query(queryInsertUser, (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "Usuarios insertados en tabla usuario"
             })
         })
     } catch (e) {
@@ -53,7 +53,7 @@ controller.deleteDataUser = (req, res) => {
         conn.query(queryDeleteDataUser, (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "Elimina tabla tempora, usuarios, roles y dependencias agregadas anteriormente"
             })
         })
     } catch (e) {
@@ -69,7 +69,7 @@ controller.insertDependency = (req, res) => {
         )], (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "idUsuario y idUnidadAcademica insertados correctamente en unidad_academica_has_usuario"
             })
         });
     } catch (e) {
@@ -85,7 +85,7 @@ controller.insertAcademy = (req, res) => {
         )], (err, data) => {
             res.json({
                 error: err,
-                results: data
+                results: "idUsuario y idRol insertados correctamente en usuario_has_rol"
             })
         });
     } catch (e) {
