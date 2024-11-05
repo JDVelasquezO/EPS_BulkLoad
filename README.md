@@ -15,4 +15,4 @@
 | GET    | /cleanData        | 3001   | Limpia los datos eliminando registros duplicados, filas vacías y arregla correos electrónicos. | --------                     |
 | GET    | /insertUser       | 3001   | Inserta los datos de la tabla temporal a la tabla usuario.                                     | --------                     |
 | GET    | /deleteDataUser   | 3001   | Elimina todo lo creado y modificado hasta ahora.                                               | --------                     |
-| POST   | /insertDependency | 3001   | Elimina todo lo creado y modificado hasta ahora.                                               | {"dependency": "[12,25,38]"} |
+| POST   | /insertDependency | 3001   | Elimina todo lo creado y modificado hasta ahora.                                               | `{"dependency": "[12,25,38]"}` |
