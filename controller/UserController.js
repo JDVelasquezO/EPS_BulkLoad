@@ -3,6 +3,7 @@ const queryUserBulk = require("../database/userBulk");
 const queryCleanUser = require("../database/cleanData");
 const queryInsertUser = require("../database/insertUser");
 const queryInsertDependency = require("../database/insertUserHasRole");
+const queryInsertAcademy = require("../database/insertAcademyHasUser");
 const queryDeleteDataUser = require("../database/deleteData");
 const controller = {};
 
@@ -74,7 +75,22 @@ controller.insertDependency = (req, res) => {
     } catch (e) {
         console.log(e);
     }
+}
 
+controller.insertAcademy = (req, res) => {
+    let dependencies = JSON.parse(req.body.dependency);
+    try {
+        conn.query(queryInsertAcademy, [dependencies.map(
+            dependency => [dependency]
+        )], (err, data) => {
+            res.json({
+                error: err,
+                results: data
+            })
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 module.exports = controller;
