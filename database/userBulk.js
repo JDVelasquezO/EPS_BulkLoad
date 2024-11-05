@@ -13,8 +13,8 @@ const queryUserBulk = `
         EMAIL varchar(80)
     );
     
-    LOAD DATA
-    INFILE '/var/lib/mysql-files/PROFESORES.csv' INTO TABLE Temp
+    LOAD DATA LOCAL
+    INFILE '/tmp/PROFESORES.csv' INTO TABLE Temp
     CHARACTER SET latin1
     FIELDS TERMINATED BY ','
     OPTIONALLY ENCLOSED BY '"'

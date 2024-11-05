@@ -6,8 +6,8 @@ const queryInsertDependency = `
         db int
     );
     
-    LOAD DATA
-    INFILE '/var/lib/mysql-files/view_code_dependency.csv' INTO TABLE temp_code_dependency
+    LOAD DATA LOCAL
+    INFILE '/tmp/view_code_dependency.csv' INTO TABLE temp_code_dependency
     FIELDS TERMINATED BY ','
     OPTIONALLY ENCLOSED BY '"'
     LINES TERMINATED BY '\n'

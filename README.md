@@ -12,6 +12,11 @@
 
 ```sudo cp ./BulkLoadServer/res/view_code_dependency.csv /var/lib/mysql-files```
 
+# Configure static files
+`mysql> show global variables like 'local_infile';`
+`mysql> SET GLOBAL local_infile=true;`
+`mysql> quit`
+
 # Endpoints
 | Método | Endpoint          | Puerto | Descripción                                                                                        | Body                           |
 |--------|-------------------|--------|----------------------------------------------------------------------------------------------------|--------------------------------|

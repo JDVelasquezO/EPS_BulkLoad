@@ -53,7 +53,7 @@ controller.deleteDataUser = (req, res) => {
         conn.query(queryDeleteDataUser, (err, data) => {
             res.json({
                 error: err,
-                results: "Elimina tabla tempora, usuarios, roles y dependencias agregadas anteriormente"
+                results: "Elimina tabla temporal, usuarios, roles y dependencias agregadas anteriormente"
             })
         })
     } catch (e) {
