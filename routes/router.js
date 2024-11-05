@@ -10,5 +10,6 @@ router.get('/bulkLoadUser', controller.bulkLoadUsers);
 router.get('/cleanData', controller.cleanUsers);
 router.get('/insertUser', controller.insertUser);
 router.get('/deleteDataUser', controller.deleteDataUser);
+router.post('/insertDependency', controller.insertDependency);
 
 module.exports = router;

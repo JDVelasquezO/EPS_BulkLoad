@@ -44,12 +44,6 @@ const queryInsertUser = `
     inner join usuario u on u.reg_tra COLLATE utf8mb4_0900_ai_ci = Temp.REGISTRO
     inner join temp_code_dependency tcd on tcd.csv = Temp.CODIGO
     inner join unidad_academica ua on ua.idUnidadAcademica = tcd.db;
-    
-    -- Insert user with correct rol
-    insert into usuario_has_rol (descripcion, fecha_creacion, fecha_modificacion, idUsuario, idRol, idEstado, deleted_at)
-    select distinct concat(nombre, ' con rol de docente'), curdate(), curdate(),
-           idUsuario, 3, 1, null
-    from usuario;
 `;
 
 module.exports = queryInsertUser;
