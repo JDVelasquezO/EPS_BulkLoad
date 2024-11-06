@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const queryUserBulk = `
-    USE dev_deppa;
+    USE ${process.env.DB_NAME};
     
     DROP TABLE IF EXISTS Temp;
     

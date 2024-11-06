@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const queryCleanUser = `
-    USE dev_deppa;
+    USE ${process.env.DB_NAME};
     
     -- Elimina encabezado y registros vacíos
     delete from Temp where Temp.REGISTRO = 'REGISTRO' or Temp.REGISTRO = '';

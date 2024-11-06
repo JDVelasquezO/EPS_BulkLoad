@@ -1,4 +1,8 @@
+require('dotenv').config();
+
 const queryInsertDependency = `
+    USE ${process.env.DB_NAME}
+    
     -- Create of temporal for code dependency
     DROP TABLE IF EXISTS temp_code_dependency;
     CREATE TABLE IF NOT EXISTS temp_code_dependency (

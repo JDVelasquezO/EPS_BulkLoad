@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const queryInsertDependency = `
-    USE dev_deppa;
+    USE ${process.env.DB_NAME};
     
     -- Insert user with correct rol
     insert into usuario_has_rol (descripcion, fecha_creacion, fecha_modificacion, idUsuario, idRol, idEstado, deleted_at)

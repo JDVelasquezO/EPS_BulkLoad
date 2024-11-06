@@ -1,12 +1,13 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
+require("dotenv").config();
 
 let conn = mysql.createConnection({
     multipleStatements: true,
     connectionLimit: 150,
-    host: "localhost",
-    user: "root",
-    password: null,
-    database: "dev_deppa",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 conn.connect(function (err) {

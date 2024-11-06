@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const queryDeleteDataUser = `
-    USE dev_deppa;
+    USE ${process.env.DB_NAME};
     
     delete ignore from unidad_academica_has_usuario where idUnidadAcademicaUsuario > 278;
     delete ignore from usuario_has_rol where idUsuarioRol > 37;

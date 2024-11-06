@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const queryInsertUser = `
-    USE dev_deppa;
+    USE ${process.env.DB_NAME};
     
     -- Reset old users
     update usuario set usuario = '19160647' where usuario = '20160647';
