@@ -9,7 +9,12 @@ const controller = {};
 
 controller.bulkLoadUsers = (req, res) => {
     try {
+        conn.query("SET GLOBAL local_infile = 1;", (error) => {
+            if (error) throw error;
+        });
+
         conn.query(queryUserBulk, (err, data) => {
+            if (err) console.log(err);
             res.json({
                 error: err,
                 results: "Usuarios cargados en tabla Temp"
