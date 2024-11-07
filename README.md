@@ -5,11 +5,11 @@
 # Static files must be in folder `/tmp`
 
 # Configure static files
-`mysql> show global variables like 'local_infile';`
+`UPDATE mysql.user SET Super_Priv='Y' WHERE user='deppa_user' AND host='%';`
 
-`mysql> SET GLOBAL local_infile=true;`
+`show global variables like 'local_infile';`
 
-`mysql> quit`
+`SET GLOBAL local_infile=true;`
 
 # Start server
 ```npm install```
