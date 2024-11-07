@@ -4,7 +4,9 @@ const queryCleanUser = require("../database/cleanData");
 const queryInsertUser = require("../database/insertUser");
 const queryInsertDependency = require("../database/insertUserHasRole");
 const queryInsertAcademy = require("../database/insertAcademyHasUser");
+const queryInsertRoleByUnity = require("../database/insertRoleByUnities");
 const queryDeleteDataUser = require("../database/deleteData");
+const queryDeleteRoleByUnity = require("../database/deleteRoleByUnities");
 const controller = {};
 
 controller.bulkLoadUsers = (req, res) => {
@@ -96,6 +98,45 @@ controller.insertAcademy = (req, res) => {
             res.json({
                 error: err,
                 results: "idUsuario y idUnidadAcademica insertados correctamente en unidad_academica_has_usuario"
+            })
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+controller.insertRoleByAcademy = (req, res) => {
+    let dependencies = JSON.parse(req.body.dependency);
+    let role = JSON.parse(req.body.role);
+    // console.log(dependencies, role);
+    try {
+        conn.query(queryInsertRoleByUnity, [role,
+            dependencies.map(
+                dependency => [dependency]
+            )], (err, data) => {
+            res.json({
+                error: err,
+                results: `idAcademy ${dependencies} con idRol ${role} insertados 
+                correctamente en usuario_has_rol`
+            })
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+controller.deleteRoleByAcademy = (req, res) => {
+    let dependencies = JSON.parse(req.body.dependency);
+    let role = JSON.parse(req.body.role);
+    // console.log(dependencies, role);
+    try {
+        conn.query(queryDeleteRoleByUnity, [dependencies.map(
+                dependency => [dependency]
+            ), role], (err, data) => {
+            res.json({
+                error: err,
+                results: `idAcademy ${dependencies} con idRol ${role} eliminados correctamente 
+                en usuario_has_rol`
             })
         });
     } catch (e) {
