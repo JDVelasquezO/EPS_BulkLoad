@@ -74,7 +74,7 @@ controller.insertDependency = (req, res) => {
         )], (err, data) => {
             res.json({
                 error: err,
-                results: "idUsuario y idUnidadAcademica insertados correctamente en unidad_academica_has_usuario"
+                results: "idUsuario y idRol insertados correctamente en usuario_has_rol"
             })
         });
     } catch (e) {
@@ -85,12 +85,17 @@ controller.insertDependency = (req, res) => {
 controller.insertAcademy = (req, res) => {
     let dependencies = JSON.parse(req.body.dependency);
     try {
+        conn.query("SET GLOBAL local_infile = 1;", (error) => {
+            if (error) throw error;
+        });
+
         conn.query(queryInsertAcademy, [dependencies.map(
             dependency => [dependency]
         )], (err, data) => {
+            if (err) console.log(err);
             res.json({
                 error: err,
-                results: "idUsuario y idRol insertados correctamente en usuario_has_rol"
+                results: "idUsuario y idUnidadAcademica insertados correctamente en unidad_academica_has_usuario"
             })
         });
     } catch (e) {

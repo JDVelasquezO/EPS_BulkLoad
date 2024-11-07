@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const queryInsertDependency = `
-    USE ${process.env.DB_NAME}
+const queryInsertAcademy = `
+    USE ${process.env.DB_NAME};
     
     -- Create of temporal for code dependency
     DROP TABLE IF EXISTS temp_code_dependency;
@@ -31,4 +31,4 @@ const queryInsertDependency = `
     where ua.idUnidadAcademica in (?);
 `;
 
-module.exports = queryInsertDependency;
+module.exports = queryInsertAcademy;
