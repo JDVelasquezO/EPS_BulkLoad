@@ -5,11 +5,11 @@ const queryInsertDependency = `
     
     -- Insert user with correct rol
     insert into usuario_has_rol (descripcion, fecha_creacion, fecha_modificacion, idUsuario, idRol, idEstado, deleted_at)
-    select distinct concat(nombre, ' con rol de docente'), curdate(), curdate(),
+    select distinct concat(nombre, ' con rol establecido'), curdate(), curdate(),
            u.idUsuario, 3, 1, null
     from usuario u
     inner join unidad_academica_has_usuario uah on u.idUsuario = uah.idUsuario
-    where uah.idUnidadAcademica in (?);
+    where uah.idUnidadAcademica in (?) and u.idUsuario > 37;
 `;
 
 module.exports = queryInsertDependency;

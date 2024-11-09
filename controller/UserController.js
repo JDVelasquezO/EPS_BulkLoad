@@ -5,6 +5,7 @@ const queryInsertUser = require("../database/insertUser");
 const queryInsertDependency = require("../database/insertUserHasRole");
 const queryInsertAcademy = require("../database/insertAcademyHasUser");
 const queryInsertRoleByUnity = require("../database/insertRoleByUnities");
+const queryInsertEstadoMerito = require("../database/insertEstadoMerito");
 const queryDeleteDataUser = require("../database/deleteData");
 const queryDeleteRoleByUnity = require("../database/deleteRoleByUnities");
 const controller = {};
@@ -19,7 +20,7 @@ controller.bulkLoadUsers = (req, res) => {
             if (err) console.log(err);
             res.json({
                 error: err,
-                results: "Usuarios cargados en tabla Temp"
+                results: data
             })
         })
     } catch (e) {
@@ -33,7 +34,7 @@ controller.cleanUsers = (req, res) => {
         conn.query(queryCleanUser, (err, data) => {
             res.json({
                 error: err,
-                results: "Usuarios duplicados y celdas vacías eliminadas"
+                results: data
             })
         })
     } catch (e) {
@@ -46,7 +47,7 @@ controller.insertUser = (req, res) => {
         conn.query(queryInsertUser, (err, data) => {
             res.json({
                 error: err,
-                results: "Usuarios insertados en tabla usuario"
+                results: data
             })
         })
     } catch (e) {
@@ -60,7 +61,7 @@ controller.deleteDataUser = (req, res) => {
         conn.query(queryDeleteDataUser, (err, data) => {
             res.json({
                 error: err,
-                results: "Elimina tabla temporal, usuarios, roles y dependencias agregadas anteriormente"
+                results: data
             })
         })
     } catch (e) {
@@ -76,7 +77,7 @@ controller.insertDependency = (req, res) => {
         )], (err, data) => {
             res.json({
                 error: err,
-                results: "idUsuario y idRol insertados correctamente en usuario_has_rol"
+                results: data
             })
         });
     } catch (e) {
@@ -97,7 +98,7 @@ controller.insertAcademy = (req, res) => {
             if (err) console.log(err);
             res.json({
                 error: err,
-                results: "idUsuario y idUnidadAcademica insertados correctamente en unidad_academica_has_usuario"
+                results: data
             })
         });
     } catch (e) {
@@ -108,16 +109,24 @@ controller.insertAcademy = (req, res) => {
 controller.insertRoleByAcademy = (req, res) => {
     let dependencies = JSON.parse(req.body.dependency);
     let role = JSON.parse(req.body.role);
+    let dataReturn = {};
     // console.log(dependencies, role);
     try {
         conn.query(queryInsertRoleByUnity, [role,
             dependencies.map(
                 dependency => [dependency]
+                )], (err, data) => {
+                    if (err) console.log(err);
+                    dataReturn = data;
+            });
+
+        conn.query(queryInsertEstadoMerito, [dependencies.map(
+            dependency => [dependency]
             )], (err, data) => {
+            dataReturn.estadoMerito = data;
             res.json({
                 error: err,
-                results: `idAcademy ${dependencies} con idRol ${role} insertados 
-                correctamente en usuario_has_rol`
+                results: dataReturn
             })
         });
     } catch (e) {
