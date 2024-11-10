@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/UserController');
+const bulkLoadController = require('../controller/BulkLoadController');
+const userController = require('../controller/UserController');
+const roleController = require('../controller/RoleController');
 
 router.get('/', (req, res) => {
     res.json('It works');
 });
 
-router.get('/bulkLoadUser', controller.bulkLoadUsers);
-router.get('/cleanData', controller.cleanUsers);
-router.get('/insertUser', controller.insertUser);
-router.get('/deleteDataUser', controller.deleteDataUser);
-router.post('/insertAcademy', controller.insertAcademy);
-router.post('/insertUserRol', controller.queryInsertUserRol);
-router.post('/insertRoleByAcademy', controller.insertRoleByAcademy);
-router.post('/deleteRoleByAcademy', controller.deleteRoleByAcademy);
+router.get('/bulkLoadUser', bulkLoadController.bulkLoadUsers);
+router.get('/cleanData', bulkLoadController.cleanUsers);
+router.get('/deleteDataUser', bulkLoadController.deleteDataUser);
+router.get('/insertUser', userController.insertUser);
+router.post('/insertAcademy', userController.insertAcademy);
+router.post('/insertUserRol', userController.queryInsertUserRol);
+router.post('/insertRoleByAcademy', roleController.insertRoleByAcademy);
+router.post('/deleteRoleByAcademy', roleController.deleteRoleByAcademy);
 
 module.exports = router;
