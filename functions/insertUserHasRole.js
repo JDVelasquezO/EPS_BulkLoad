@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const queryInsertDependency = `
+const queryInsertUserRol = `
     USE ${process.env.DB_NAME};
     
     -- Insert user with correct rol
@@ -12,4 +12,4 @@ const queryInsertDependency = `
     where uah.idUnidadAcademica in (?) and u.idUsuario > 37;
 `;
 
-module.exports = queryInsertDependency;
+module.exports = queryInsertUserRol;

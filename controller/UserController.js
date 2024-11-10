@@ -1,13 +1,13 @@
 const conn = require("../config/conn");
-const queryUserBulk = require("../database/userBulk");
-const queryCleanUser = require("../database/cleanData");
-const queryInsertUser = require("../database/insertUser");
-const queryInsertDependency = require("../database/insertUserHasRole");
-const queryInsertAcademy = require("../database/insertAcademyHasUser");
-const queryInsertRoleByUnity = require("../database/insertRoleByUnities");
-const queryInsertEstadoMerito = require("../database/insertEstadoMerito");
-const queryDeleteDataUser = require("../database/deleteData");
-const queryDeleteRoleByUnity = require("../database/deleteRoleByUnities");
+const queryUserBulk = require("../functions/userBulk");
+const queryCleanUser = require("../functions/cleanData");
+const queryInsertUser = require("../functions/insertUser");
+const queryInsertUserRol = require("../functions/insertUserHasRole");
+const queryInsertAcademy = require("../functions/insertAcademyHasUser");
+const queryInsertRoleByUnity = require("../functions/insertRoleByUnities");
+const queryInsertEstadoMerito = require("../functions/insertEstadoMerito");
+const queryDeleteDataUser = require("../functions/deleteData");
+const queryDeleteRoleByUnity = require("../functions/deleteRoleByUnities");
 const controller = {};
 
 controller.bulkLoadUsers = (req, res) => {
@@ -69,10 +69,10 @@ controller.deleteDataUser = (req, res) => {
     }
 }
 
-controller.insertDependency = (req, res) => {
+controller.queryInsertUserRol = (req, res) => {
     let dependencies = JSON.parse(req.body.dependency);
     try {
-        conn.query(queryInsertDependency, [dependencies.map(
+        conn.query(queryInsertUserRol, [dependencies.map(
             dependency => [dependency]
         )], (err, data) => {
             res.json({
