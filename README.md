@@ -27,6 +27,7 @@
 | GET    | `/deleteDataUser`      | 3001   | Elimina todo lo creado y modificado hasta ahora.                                                   |                                             |
 | POST   | `/insertRoleByAcademy` | 3001   | Inserta roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
 | POST   | `/deleteRoleByAcademy` | 3001   | Elimina roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
+| POST   | `/insertUserWithRole`  | 3001   | Inserta roles específicos de usuarios específicas.                                                 | `{"users": "[32800, 32801]", "role": "3"}`  |
 
 # Execution
 ## For get methods
