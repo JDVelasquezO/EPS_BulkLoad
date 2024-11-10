@@ -106,33 +106,45 @@ controller.insertAcademy = (req, res) => {
     }
 }
 
-controller.insertRoleByAcademy = (req, res) => {
+controller.insertRoleByAcademy = (req, res, next) => {
     let dependencies = JSON.parse(req.body.dependency);
     let role = JSON.parse(req.body.role);
+    let mappedDependencies = dependencies.map(dependency => [dependency]);
     let dataReturn = {};
-    // console.log(dependencies, role);
-    try {
-        conn.query(queryInsertRoleByUnity, [role,
-            dependencies.map(
-                dependency => [dependency]
-                )], (err, data) => {
-                    if (err) console.log(err);
-                    dataReturn = data;
-            });
 
-        conn.query(queryInsertEstadoMerito, [dependencies.map(
-            dependency => [dependency]
-            )], (err, data) => {
-            dataReturn.estadoMerito = data;
-            res.json({
-                error: err,
-                results: dataReturn
-            })
+    try {
+        // Primer query para insertar el rol
+        conn.query(queryInsertRoleByUnity, [role, mappedDependencies], (err, data) => {
+            if (err) {
+                return res.json({ error: err });
+            }
+
+            dataReturn.roleData = data;
+
+            try {
+                // Segundo query para insertar estadoMerito
+                conn.query(queryInsertEstadoMerito, [mappedDependencies], (err, data) => {
+                    if (err) {
+                        return res.json({ error: err });
+                    }
+
+                    dataReturn.estadoMerito = data;
+                    res.json({
+                        error: null,
+                        results: dataReturn
+                    });
+                });
+            } catch (e) {
+                console.log(e);
+                next(e);
+            }
         });
     } catch (e) {
         console.log(e);
+        next(e);
     }
-}
+};
+
 
 controller.deleteRoleByAcademy = (req, res) => {
     let dependencies = JSON.parse(req.body.dependency);
