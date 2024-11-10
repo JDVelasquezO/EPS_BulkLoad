@@ -2,6 +2,7 @@ const conn = require("../config/conn");
 const queryInsertUser = require("../functions/users/insertUser");
 const queryInsertUserRol = require("../functions/users/insertUserHasRole");
 const queryInsertAcademy = require("../functions/users/insertAcademyHasUser");
+const queryInsertUserWithRole = require("../functions/users/insertUserWithRole");
 const controller = {};
 
 controller.insertUser = (req, res) => {
@@ -54,5 +55,23 @@ controller.insertAcademy = (req, res) => {
         console.log(e);
     }
 }
+
+controller.insertUserWithRole = (req, res, next) => {
+    let users = JSON.parse(req.body.users);
+    let role = JSON.parse(req.body.role);
+    let mappedUsers = users.map(user => [user]);
+
+    try {
+        conn.query(queryInsertUserWithRole, [role, mappedUsers], (err, data) => {
+            res.json({
+                error: err,
+                results: data
+            });
+        });
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+};
 
 module.exports = controller;
