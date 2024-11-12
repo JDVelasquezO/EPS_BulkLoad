@@ -1,11 +1,7 @@
-alter table unidad_academica_has_usuario
-drop primary key,
-add constraint pk_idUsuaro_idUnidadAcademica primary key (idUsuario, idUnidadAcademica);
+ALTER TABLE deppa_sistema.unidad_academica_has_usuario 
+ADD CONSTRAINT unidad_academica_has_usuario_unique 
+UNIQUE KEY (idUsuario,idUnidadAcademica);
 
-alter table usuario_has_rol
-drop primary key,
-add constraint pk_idUsuario_idRol primary key (idUsuario, idRol);
-
-alter table estado_meritos
-drop primary key,
-add constraint pk_idUsuario_idAnhio primary key (idUsuario, idUnidadAcademica, idAnho);
+ALTER TABLE deppa_sistema.usuario_has_rol 
+ADD CONSTRAINT usuario_has_rol_unique
+UNIQUE KEY (idUsuario,idRol);
