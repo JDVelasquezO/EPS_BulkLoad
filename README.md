@@ -23,7 +23,7 @@
 | GET    | `/cleanData`           | 3001   | Limpia los datos eliminando registros duplicados, filas vacías y arregla correos electrónicos.     |                                             |
 | GET    | `/insertUser`          | 3001   | Inserta los datos de la tabla temporal a la tabla usuario.                                         |                                             |
 | POST   | `/insertAcademy`       | 3001   | Inserta los datos de academia junto con el id de usuario enviando un arreglo de codigos de unidad. | `{"dependency": "[12,25,38]"}`              |
-| POST   | `/insertUserRol`    | 3001   | Inserta los datos de roles junto con el id de usuario enviando un arreglo de codigos de unidad..   | `{"dependency": "[12,25,38]"}`              |
+| POST   | `/insertUserRol`       | 3001   | Inserta los datos de roles junto con el id de usuario enviando un arreglo de codigos de unidad..   | `{"dependency": "[12,25,38]"}`              |
 | GET    | `/deleteDataUser`      | 3001   | Elimina todo lo creado y modificado hasta ahora.                                                   |                                             |
 | POST   | `/insertRoleByAcademy` | 3001   | Inserta roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
 | POST   | `/deleteRoleByAcademy` | 3001   | Elimina roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
