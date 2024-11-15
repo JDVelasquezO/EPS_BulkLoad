@@ -17,7 +17,7 @@ const queryInsertUser = `
                     EMAIL,
                     REGISTRO,
                     REGISTRO, STR_TO_DATE(FECHA_NAC, '%m/%d/%Y'),
-                    CUI, '', CURDATE(), CURDATE(), 1,
+                    CUI, '', NOW(), NOW(), 1,
                     null
     from Temp;
 `;

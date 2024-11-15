@@ -21,8 +21,8 @@ const queryInsertAcademy = `
     -- Insert user with correct ID
     insert into unidad_academica_has_usuario (idUnidadAcademicaUsuario, descripcion,
         fecha_creacion, fecha_modificacion, idEstado, idUnidadAcademica, idUsuario, deleted_at)
-    select null, DEPENDENCIA, CURDATE(),
-           CURDATE(), 1,
+    select null, DEPENDENCIA, NOW(),
+           NOW(), 1,
            ua.idUnidadAcademica, u.idUsuario, null
     from Temp
     inner join usuario u on u.reg_tra COLLATE utf8mb4_0900_ai_ci = Temp.REGISTRO

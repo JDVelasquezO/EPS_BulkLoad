@@ -3,7 +3,7 @@ const queryInsertMeritoAndGetDependency = `
 
     insert into estado_meritos (fecha_creacion, fecha_presentado, fecha_modificacion, nota_total, idUsuario,
         idUnidadAcademica, idEstado, deleted_at, idAnho)
-    select distinct curdate(), null, curdate(), 0.000, ur.idUsuario, uau.idUnidadAcademica,
+    select distinct NOW(), null, NOW(), 0.000, ur.idUsuario, uau.idUnidadAcademica,
                     3, null, (
                         select idAnho from anho_meritos where idEstado = 8
                     ) idAnho
