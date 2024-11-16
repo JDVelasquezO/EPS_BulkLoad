@@ -37,7 +37,7 @@ controller.queryInsertUserRol = (req, res) => {
     }
 }
 
-controller.insertAcademy = (req, res) => {
+controller.insertAcademy = (req, res, next) => {
     let dependencies = JSON.parse(req.body.dependency);
     try {
         conn.query("SET GLOBAL local_infile = 1;", (error) => {
@@ -55,6 +55,7 @@ controller.insertAcademy = (req, res) => {
         });
     } catch (e) {
         console.log(e);
+        next();
     }
 }
 
