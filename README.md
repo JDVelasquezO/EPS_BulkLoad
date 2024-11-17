@@ -6,7 +6,7 @@
 ### [Endpoints](#Endpoints)
 ### [Execution](#Execution)
 ### [Procedure methods](#procedure-methods)
-### &nbsp; - [reassignUsers()](#1.-reassignUsers())
+### &nbsp;- [reassignUsers()](#reassignUsers)
 
 ## Pre-requirements
 - curl > 7.81.0
@@ -50,7 +50,8 @@ curl -X POST -H 'Content-Type: application/json' -d '{"dependency": "[n, m]"}' h
 ```
 
 ## Procedure methods
-### 1. *reassignUsers()*
+### *reassignUsers()*
+#### Path: `./scripts/proc_reassignUsers.sql`
 Este método obtiene un listado de idUsuario en tipo varchar separados por coma, así mismo el idUnidadAcademica de origen, idUnidadAcademica de destino y una bandera para indicar si este registro será una actualización del ya existente o una agregación a la tabla **unidad_academica_has_usuario**.<br />
 Para ejectuar este método debemos llamarlo de la siguiente manera:
 
