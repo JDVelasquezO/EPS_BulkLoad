@@ -55,7 +55,7 @@ controller.insertAcademy = (req, res, next) => {
         });
     } catch (e) {
         console.log(e);
-        next();
+        next(); 
     }
 }
 
