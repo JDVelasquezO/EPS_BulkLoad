@@ -9,7 +9,7 @@ const queryInsertUserRol = `
            u.idUsuario, 3, 1, null
     from usuario u
     inner join unidad_academica_has_usuario uah on u.idUsuario = uah.idUsuario
-    where uah.idUnidadAcademica in (?) and u.idUsuario > 37;
+    where uah.idUnidadAcademica in (?) and u.idUsuario > 11;
 `;
 
 module.exports = queryInsertUserRol;

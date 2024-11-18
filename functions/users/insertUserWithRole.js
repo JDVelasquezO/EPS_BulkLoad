@@ -8,7 +8,7 @@ const queryInsertUserWithRole = `
         idRol, idEstado, deleted_at)
     select distinct concat(nombre, ' con rol especificado'), NOW(), NOW(),
            u.idUsuario, ?, 1, null
-    from usuario u where idUsuario in (?) and u.idUsuario > 37;
+    from usuario u where idUsuario in (?) and u.idUsuario > 11;
 `;
 
 module.exports = queryInsertUserWithRole;

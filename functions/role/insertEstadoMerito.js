@@ -9,7 +9,7 @@ const queryInsertEstadoMerito = `
                     ) idAnho
     from usuario_has_rol ur
              inner join unidad_academica_has_usuario uau on ur.idUsuario = uau.idUsuario
-    where idUnidadAcademica in (?) and uau.idUsuario > 37;
+    where idUnidadAcademica in (?) and uau.idUsuario > 11;
 `;
 
 module.exports = queryInsertEstadoMerito;
