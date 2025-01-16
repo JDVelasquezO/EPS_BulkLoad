@@ -13,7 +13,7 @@ const queryInsertUserRol = `
         select null
         from usuario_has_rol uhr
         where uhr.idUsuario = uah.idUsuario
-    );;
+    );
 `;
 
 module.exports = queryInsertUserRol;
