@@ -1,22 +1,35 @@
-const conn = require("../config/conn");
+const connPromise = require("../config/conn");
 const queryInsertUser = require("../functions/users/insertUser");
 const queryInsertUserRol = require("../functions/users/insertUserHasRole");
 const queryInsertAcademy = require("../functions/users/insertAcademyHasUser");
 const queryInsertUserWithRole = require("../functions/users/insertUserWithRole");
-const queryInsertEstadoMerito = require("../functions/role/insertEstadoMerito");
+// const queryInsertEstadoMerito = require("../functions/role/insertEstadoMerito");
 const queryInsertMeritoAndGetDependency = require("../functions/role/insertMeritoAndGetDependency");
 const controller = {};
 
-controller.insertUser = (req, res) => {
+controller.insertUser = async (req, res) => {
     try {
-        conn.query(queryInsertUser, (err, data) => {
-            res.json({
-                error: err,
-                results: data
-            })
-        })
+        const conn = await connPromise;
+
+        const [rows] = await conn.query(queryInsertUser);
+
+        if (!Array.isArray(rows)) {
+            console.error("Respuesta inesperada con: ", rows);
+            throw new Error("Formato de respuesta inesperado ");
+        }
+
+        res.json({
+            error: null,
+            results: rows.length ? {
+                "Usuarios insertados en tabla usuarios": rows[rows.length -1].affectedRows,
+            } : null,
+        });
     } catch (e) {
-        console.log(e);
+        console.log("Error al cargar usuarios a tabla usuarios ", e);
+        res.status(500).json({
+            msg: "Error al cargar usuarios a tabla usuarios",
+            error: e
+        });
     }
 
 }
