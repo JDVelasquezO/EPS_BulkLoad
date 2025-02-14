@@ -47,29 +47,41 @@ controller.insertPersonal = async (req, res) => {
 
 controller.updatePersonal = async (req, res) => {
     try {
-        let personal = req.body.personal ? req.body.personal: null;
-        let sexo = req.body.sexo ? req.body.sexo : null;
-        let email = req.body.email ? req.body.email : null;
-
         const conn = await connPromise;
-        let query = '';
-        let rows = [];
-        if (sexo === null && email) {
-            query = `update personal set email = ? where registro_personal = ?;`;
-            [rows] = await conn.query(query, [email, personal]);
-        }
-        if (email === null && sexo) {
-            query = `update personal set sexo = ? where registro_personal = ?;`;
-            [rows] = await conn.query(query, [sexo, personal]);
+
+        let personal =  req.body.personal || null;
+        let sexo = req.body.sexo || null;
+        let email = req.body.email || null;
+
+        if (!personal) {
+            return res.status(400).json({ error: "El campo 'personal' es obligatorio." });
         }
 
-        console.log([rows]);
+        let updates = [];
+        let values = [];
+
+        if (sexo) {
+            updates.push("sexo = ?");
+            values.push(sexo);
+        }
+        if (email) {
+            updates.push("email = ?");
+            values.push(email);
+        }
+
+        if (updates.length === 0) {
+            return res.status(400).json({ error: "Debe proporcionar al menos un campo para actualizar." });
+        }
+
+        values.push(personal);
+        const query = `UPDATE personal SET ${updates.join(", ")} WHERE registro_personal = ?;`;
+        const [rows] = await conn.query(query, values);
 
         res.json({
             error: null,
-            results: rows ? {
-                "Usuarios actualizados en tabla personal": rows.affectedRows,
-            } : null,
+            results: {
+                "Usuarios actualizados en tabla personal": rows.affectedRows
+            },
         });
     } catch (e) {
         console.error("Respuesta inesperada con: ", e);
