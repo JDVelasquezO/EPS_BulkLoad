@@ -24,8 +24,10 @@ controller.insertUser = async (req, res) => {
                 "Usuarios insertados en tabla usuarios": rows[rows.length -1].affectedRows,
             } : null,
         });
+
+        await conn.close();
     } catch (e) {
-        console.log("Error al cargar usuarios a tabla usuarios ", e);
+        console.error("Error al cargar usuarios a tabla usuarios ", e);
         res.status(500).json({
             msg: "Error al cargar usuarios a tabla usuarios",
             error: e

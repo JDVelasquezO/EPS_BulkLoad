@@ -3,6 +3,7 @@ const router = express.Router();
 const bulkLoadController = require('../controller/BulkLoadController');
 const userController = require('../controller/UserController');
 const roleController = require('../controller/RoleController');
+const personalController = require('../controller/PersonalController');
 
 router.get('/', (req, res) => {
     res.json('It works');
@@ -17,5 +18,6 @@ router.post('/insertUserRol', userController.queryInsertUserRol);
 router.post('/insertRoleByAcademy', roleController.insertRoleByAcademy);
 router.post('/deleteRoleByAcademy', roleController.deleteRoleByAcademy);
 router.post('/insertUserWithRole', userController.insertUserWithRole);
+router.get('/insertPersonal', personalController.insertPersonal);
 
 module.exports = router;

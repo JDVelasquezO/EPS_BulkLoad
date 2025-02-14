@@ -1,10 +1,4 @@
 node_modules
 /node_modules
 .idea
-/res
-res
 .env
-
-docker-compose.yml
-.docker-ignore
-Dockerfile
