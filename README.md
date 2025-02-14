@@ -26,17 +26,18 @@ SET GLOBAL local_infile=true;
 ```npm start```
 
 ## Endpoints
-| Método | Endpoint               | Puerto | Descripción                                                                                        | Body                                        |
-|--------|------------------------|--------|----------------------------------------------------------------------------------------------------|---------------------------------------------|
-| GET    | `/bulkLoadUser`        | 3001   | Carga los datos del archivo CSV a una tabla temporal en la base de datos.                          |                                             |
-| GET    | `/cleanData`           | 3001   | Limpia los datos eliminando registros duplicados, filas vacías y arregla correos electrónicos.     |                                             |
-| GET    | `/insertUser`          | 3001   | Inserta los datos de la tabla temporal a la tabla usuario.                                         |                                             |
-| POST   | `/insertAcademy`       | 3001   | Inserta los datos de academia junto con el id de usuario enviando un arreglo de codigos de unidad. | `{"dependency": "[12,25,38]"}`              |
-| POST   | `/insertUserRol`       | 3001   | Inserta los datos de roles junto con el id de usuario enviando un arreglo de codigos de unidad..   | `{"dependency": "[12,25,38]"}`              |
-| GET    | `/deleteDataUser`      | 3001   | Elimina todo lo creado y modificado hasta ahora.                                                   |                                             |
-| POST   | `/insertRoleByAcademy` | 3001   | Inserta roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
-| POST   | `/deleteRoleByAcademy` | 3001   | Elimina roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}` |
-| POST   | `/insertUserWithRole`  | 3001   | Inserta roles específicos de usuarios específicas.                                                 | `{"users": "[32800, 32801]", "role": "3"}`  |
+| Método | Endpoint               | Puerto | Descripción                                                                                        | Body                                                                            |
+|--------|------------------------|--------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| GET    | `/bulkLoadUser`        | 3001   | Carga los datos del archivo CSV a una tabla temporal en la base de datos.                          |                                                                                 |
+| GET    | `/cleanData`           | 3001   | Limpia los datos eliminando registros duplicados, filas vacías y arregla correos electrónicos.     |                                                                                 |
+| GET    | `/insertUser`          | 3001   | Inserta los datos de la tabla temporal a la tabla usuario.                                         |                                                                                 |
+| POST   | `/insertAcademy`       | 3001   | Inserta los datos de academia junto con el id de usuario enviando un arreglo de codigos de unidad. | `{"dependency": "[12,25,38]"}`                                                  |
+| POST   | `/insertUserRol`       | 3001   | Inserta los datos de roles junto con el id de usuario enviando un arreglo de codigos de unidad..   | `{"dependency": "[12,25,38]"}`                                                  |
+| GET    | `/deleteDataUser`      | 3001   | Elimina todo lo creado y modificado hasta ahora.                                                   |                                                                                 |
+| POST   | `/insertRoleByAcademy` | 3001   | Inserta roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}`                                     |
+| POST   | `/deleteRoleByAcademy` | 3001   | Elimina roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}`                                     |
+| GET    | `/insertPersonal`      | 3001   | Inserta los registros del archivo `/res/personal_202502101232-0304.sql`.                           |                                                                                 |
+| PUT    | `/updatePersonal`      | 3001   | Actualiza los campos de sexo o email pasando de parámetro el registro_personal.                    | `{"personal": "20190105", "email": "dayavi123@gmail.com", "sexo": "Masculino"}` |
 
 ## Execution
 ### For get methods
