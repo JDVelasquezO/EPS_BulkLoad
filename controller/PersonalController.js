@@ -35,12 +35,46 @@ controller.insertPersonal = async (req, res) => {
                 "Usuarios insertados en tabla personal": result,
             } : null,
         });
-
-        await conn.close();
+        // await conn.close();
     } catch (e) {
         console.error("Error al cargar usuarios a tabla personal ", e);
         res.status(500).json({
             msg: "Error al cargar usuarios a tabla personal",
+            error: e.message || 'Error desconocido'
+        });
+    }
+}
+
+controller.updatePersonal = async (req, res) => {
+    try {
+        let personal = req.body.personal ? req.body.personal: null;
+        let sexo = req.body.sexo ? req.body.sexo : null;
+        let email = req.body.email ? req.body.email : null;
+
+        const conn = await connPromise;
+        let query = '';
+        let rows = [];
+        if (sexo === null && email) {
+            query = `update personal set email = ? where registro_personal = ?;`;
+            [rows] = await conn.query(query, [email, personal]);
+        }
+        if (email === null && sexo) {
+            query = `update personal set sexo = ? where registro_personal = ?;`;
+            [rows] = await conn.query(query, [sexo, personal]);
+        }
+
+        console.log([rows]);
+
+        res.json({
+            error: null,
+            results: rows ? {
+                "Usuarios actualizados en tabla personal": rows.affectedRows,
+            } : null,
+        });
+    } catch (e) {
+        console.error("Respuesta inesperada con: ", e);
+        res.status(500).json({
+            msg: "Error al actualizar usuarios a tabla personal",
             error: e.message || 'Error desconocido'
         });
     }

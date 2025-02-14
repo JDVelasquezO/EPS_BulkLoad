@@ -25,7 +25,7 @@ controller.insertUser = async (req, res) => {
             } : null,
         });
 
-        await conn.close();
+        // await conn.close();
     } catch (e) {
         console.error("Error al cargar usuarios a tabla usuarios ", e);
         res.status(500).json({
@@ -52,25 +52,35 @@ controller.queryInsertUserRol = (req, res) => {
     }
 }
 
-controller.insertAcademy = (req, res, next) => {
-    let dependencies = JSON.parse(req.body.dependency);
+controller.insertAcademy = async (req, res, next) => {
     try {
-        conn.query("SET GLOBAL local_infile = 1;", (error) => {
-            if (error) throw error;
-        });
+        let dependencies = JSON.parse(req.body.dependency);
 
-        conn.query(queryInsertAcademy, [dependencies.map(
+        const conn = await connPromise;
+        await conn.query("SET GLOBAL local_infile = 1;");
+
+        const [rows] = await conn.query(queryInsertAcademy, [dependencies.map(
             dependency => [dependency]
-        )], (err, data) => {
-            if (err) console.log(err);
-            res.json({
-                error: err,
-                results: data
-            })
+        )]);
+
+        if (!Array.isArray(rows)) {
+            console.error("Respuesta inesperada con: ", rows);
+            throw new Error("Formato de respuesta inesperado ");
+        }
+
+        res.json({
+            error: null,
+            results: rows.length ? {
+                "Usuarios insertados en tabla unidad_academica_has_usuario": rows[rows.length - 1].affectedRows,
+            } : null,
         });
     } catch (e) {
-        console.log(e);
-        next(); 
+        console.error("Error al cargar usuarios a tabla unidad_academica_has_usuario ", e);
+        res.status(500).json({
+            msg: "Error al cargar usuarios a unidad_academica_has_usuario",
+            error: e
+        });
+        next(e);
     }
 }
 

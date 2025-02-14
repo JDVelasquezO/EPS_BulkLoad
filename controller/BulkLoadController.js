@@ -25,7 +25,7 @@ controller.bulkLoadUsers = async (req, res) => {
             } : null,
         });
 
-        await conn.close();
+        // await conn.close();
     } catch (e) {
         console.error("Error al cargar usuarios a tabla temporal ", e);
         res.status(500).json({
@@ -54,7 +54,7 @@ controller.cleanUsers = async (req, res) => {
             } : null,
         });
 
-        await conn.close();
+        // await conn.close();
     } catch (e) {
         console.error("Error al limpiar usuarios ", e);
         res.status(500).json({
@@ -81,7 +81,7 @@ controller.deleteDataUser = async (req, res) => {
             results: rows.length ? rows[rows.length -1 ]: null,
         });
 
-        await conn.close();
+        // await conn.close();
     } catch (e) {
         console.error("Error al eliminar datos ", e);
         res.status(500).json({

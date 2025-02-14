@@ -18,6 +18,8 @@ router.post('/insertUserRol', userController.queryInsertUserRol);
 router.post('/insertRoleByAcademy', roleController.insertRoleByAcademy);
 router.post('/deleteRoleByAcademy', roleController.deleteRoleByAcademy);
 router.post('/insertUserWithRole', userController.insertUserWithRole);
+
 router.get('/insertPersonal', personalController.insertPersonal);
+router.put('/updatePersonal', personalController.updatePersonal);
 
 module.exports = router;
