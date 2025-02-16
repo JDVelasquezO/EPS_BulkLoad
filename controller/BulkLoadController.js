@@ -11,7 +11,7 @@ controller.bulkLoadUsers = async (req, res) => {
         await conn.query("SET GLOBAL local_infile = 1;");
 
         const [rows] = await conn.query(queryUserBulk);
-        console.log(rows);
+        // console.log(rows);
 
         if (!Array.isArray(rows)) {
             console.error("Respuesta inesperada con: ", rows);

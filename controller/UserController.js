@@ -36,19 +36,38 @@ controller.insertUser = async (req, res) => {
 
 }
 
-controller.queryInsertUserRol = (req, res) => {
-    let dependencies = JSON.parse(req.body.dependency);
+controller.queryInsertUserRol = async (req, res) => {
     try {
-        conn.query(queryInsertUserRol, [dependencies.map(
-            dependency => [dependency]
-        )], (err, data) => {
-            res.json({
-                error: err,
-                results: data
-            })
+        if (!req.body.dependency) {
+            return res.status(400).json({ error: "El campo 'dependency' es obligatorio." });
+        }
+
+        let dependencies;
+        try {
+            dependencies = JSON.parse(req.body.dependency);
+            if (!Array.isArray(dependencies) || dependencies.length === 0) {
+                return res.status(400).json({ error: "El campo 'dependency' debe ser un array no vacío." });
+            }
+        } catch (e) {
+            return res.status(400).json({ error: "Formato JSON inválido en 'dependency'." });
+        }
+
+        const conn = await connPromise;
+        const values = dependencies.map(dependency => [dependency]);
+        const [rows] = await conn.query(queryInsertUserRol, [values]);
+
+        res.json({
+            error: null,
+            results: {
+                "Registros insertados": rows.affectedRows
+            }
         });
     } catch (e) {
-        console.log(e);
+        console.error("Error al cargar usuarios a tabla usuario_has_rol ", e);
+        res.status(500).json({
+            msg: "Error al cargar usuarios a tabla usuario_has_rol",
+            error: e
+        });
     }
 }
 
@@ -84,40 +103,43 @@ controller.insertAcademy = async (req, res, next) => {
     }
 }
 
-controller.insertUserWithRole = (req, res, next) => {
-    let users = JSON.parse(req.body.users);
-    let role = JSON.parse(req.body.role);
-    let mappedUsers = users.map(user => [user]);
-    let dataReturn = {};
-
+controller.insertUserWithRole = async (req, res, next) => {
     try {
-        conn.query(queryInsertUserWithRole, [role, mappedUsers], (err, data) => {
-            if (err) {
-                return res.json({ error: err });
+        if (!req.body.users || !req.body.role) {
+            return res.status(400).json({ error: "Los campos 'users' y 'role' son obligatorios." });
+        }
+
+        let users, role;
+        try {
+            users = JSON.parse(req.body.users);
+            role = JSON.parse(req.body.role);
+
+            if (!Array.isArray(users) || users.length === 0) {
+                return res.status(400).json({ error: "El campo 'users' debe ser un array no vacío." });
             }
+        } catch (e) {
+            return res.status(400).json({ error: "Formato JSON inválido en 'users' o 'role'." });
+        }
 
-            dataReturn.roleData = data;
+        const conn = await connPromise;
 
-            try {
-                // Segundo query para insertar estadoMerito
-                conn.query(queryInsertMeritoAndGetDependency, [mappedUsers], (err, data) => {
-                    if (err) {
-                        return res.json({ error: err });
-                    }
+        const mappedUsers = users.map(user => [user]);
+        const [roleData] = await conn.query(queryInsertUserWithRole, [role, mappedUsers]);
+        const [estadoMerito] = await conn.query(queryInsertMeritoAndGetDependency, [mappedUsers]);
 
-                    dataReturn.estadoMerito = data;
-                    res.json({
-                        error: null,
-                        results: dataReturn
-                    });
-                });
-            } catch (e) {
-                console.log(e);
-                next(e);
+        res.json({
+            error: null,
+            results: {
+                roleData,
+                estadoMerito
             }
         });
     } catch (e) {
-        console.log(e);
+        console.error("Error en insertUserWithRole:", e);
+        res.status(500).json({
+            msg: "Error al insertar usuario con rol y estado de mérito",
+            error: e.message || "Error desconocido"
+        });
         next(e);
     }
 };
