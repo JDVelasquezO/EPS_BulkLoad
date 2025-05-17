@@ -18,6 +18,7 @@ controller.insertUser = async (req, res) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios insertados en tabla usuarios: ${rows[rows.length -1].affectedRows}`);
         res.json({
             error: null,
             results: rows.length ? {
@@ -56,6 +57,7 @@ controller.queryInsertUserRol = async (req, res) => {
         const values = dependencies.map(dependency => [dependency]);
         const [rows] = await conn.query(queryInsertUserRol, [values]);
 
+        console.log(`Usuarios insertados en tabla usuario_has_rol: ${rows.affectedRows}`);
         res.json({
             error: null,
             results: {
@@ -87,6 +89,7 @@ controller.insertAcademy = async (req, res, next) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios insertados en tabla unidad_academica_has_usuario: ${rows[rows.length - 1].affectedRows}`);
         res.json({
             error: null,
             results: rows.length ? {
@@ -127,6 +130,8 @@ controller.insertUserWithRole = async (req, res, next) => {
         const [roleData] = await conn.query(queryInsertUserWithRole, [role, mappedUsers]);
         const [estadoMerito] = await conn.query(queryInsertMeritoAndGetDependency, [mappedUsers]);
 
+        console.log(`Usuarios insertados en tabla usuario_has_rol: ${roleData.affectedRows}`);
+        console.log(`Usuarios insertados en tabla estado_merito: ${estadoMerito.affectedRows}`);
         res.json({
             error: null,
             results: {

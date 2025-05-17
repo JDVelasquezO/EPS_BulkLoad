@@ -29,6 +29,7 @@ controller.insertPersonal = async (req, res) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios insertados en tabla personal: ${result.length}`);
         res.json({
             error: null,
             results: result.length ? {
@@ -77,6 +78,7 @@ controller.updatePersonal = async (req, res) => {
         const query = `UPDATE personal SET ${updates.join(", ")} WHERE registro_personal = ?;`;
         const [rows] = await conn.query(query, values);
 
+        console.log(`Usuarios actualizados en tabla personal: ${rows.affectedRows}`);
         res.json({
             error: null,
             results: {

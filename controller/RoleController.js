@@ -33,6 +33,8 @@ controller.insertRoleByAcademy = async (req, res, next) => {
         // Segundo query para insertar estadoMerito
         const [estadoMerito] = await conn.query(queryInsertEstadoMerito, [mappedDependencies]);
 
+        console.log(`idAcademy ${dependencies.join(", ")} con idRol ${role} insertados correctamente en usuario_has_rol`);
+        console.log(`idAcademy ${dependencies.join(", ")} con idRol ${role} insertados correctamente en estado_merito`);
         res.json({
             error: null,
             results: {
@@ -61,6 +63,7 @@ controller.deleteRoleByAcademy = async (req, res) => {
 
         const [rows] = await conn.query(queryDeleteRoleByUnity, [mappedDependencies, role]);
 
+        console.log(`idAcademy ${dependencies.join(", ")} con idRol ${role} eliminados correctamente en usuario_has_rol`);
         res.json({
             error: null,
             results: `idAcademy ${dependencies.join(", ")} con idRol ${role} eliminados correctamente en usuario_has_rol`,

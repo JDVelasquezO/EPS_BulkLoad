@@ -18,6 +18,7 @@ controller.bulkLoadUsers = async (req, res) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios insertados en temporal: ${rows[rows.length -1].affectedRows}`);
         res.json({
             error: null,
             results: rows.length ? {
@@ -46,6 +47,8 @@ controller.cleanUsers = async (req, res) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios insertados sin duplicacion: ${rows[2].affectedRows}`);
+        console.log(`Usuarios con correo electronico generado: ${rows[6].affectedRows}`);
         res.json({
             error: null,
             results: rows.length ? {
@@ -76,6 +79,7 @@ controller.deleteDataUser = async (req, res) => {
             throw new Error("Formato de respuesta inesperado ");
         }
 
+        console.log(`Usuarios eliminados: ${rows[rows.length -1].affectedRows}`);
         res.json({
             error: null,
             results: rows.length ? rows[rows.length -1 ]: null,
