@@ -57,11 +57,14 @@ controller.queryInsertUserRol = async (req, res) => {
         const values = dependencies.map(dependency => [dependency]);
         const [rows] = await conn.query(queryInsertUserRol, [values]);
 
-        console.log(`Usuarios insertados en tabla usuario_has_rol: ${rows.affectedRows}`);
+        console.log(rows[1]);
+        const affectedRows = rows[1].affectedRows;
+
+        console.log(`Usuarios insertados en tabla usuario_has_rol: ${affectedRows}`);
         res.json({
             error: null,
             results: {
-                "Registros insertados": rows.affectedRows
+                "Registros insertados": affectedRows
             }
         });
     } catch (e) {
