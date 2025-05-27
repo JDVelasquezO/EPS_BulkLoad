@@ -4,6 +4,7 @@ const bulkLoadController = require('../controller/BulkLoadController');
 const userController = require('../controller/UserController');
 const roleController = require('../controller/RoleController');
 const personalController = require('../controller/PersonalController');
+const teacherController = require('../controller/TeacherController');
 
 router.get('/', (req, res) => {
     res.json('It works');
@@ -21,5 +22,7 @@ router.post('/insertUserWithRole', userController.insertUserWithRole);
 
 router.get('/insertPersonal', personalController.insertPersonal);
 router.put('/updatePersonal', personalController.updatePersonal);
+
+router.get('/migrateTeacher', teacherController.migrateTeacher);
 
 module.exports = router;
