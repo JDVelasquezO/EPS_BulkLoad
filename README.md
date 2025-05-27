@@ -41,6 +41,8 @@ SET GLOBAL local_infile=true;
 | POST   | `/deleteRoleByAcademy` | 3001   | Elimina roles específicos de unidades específicas.                                                 | `{"dependency": "[12,25,38]", "role": "3"}`                                     |
 | GET    | `/insertPersonal`      | 3001   | Inserta los registros del archivo `/res/personal_202502101232-0304.sql`.                           |                                                                                 |
 | PUT    | `/updatePersonal`      | 3001   | Actualiza los campos de sexo o email pasando de parámetro el registro_personal.                    | `{"personal": "20190105", "email": "dayavi123@gmail.com", "sexo": "Masculino"}` |
+| GET    | `/migrateTeacher`      | 3001   | Inserta dentro de la tabla docente a quienes tienen rol de docente.                                |                                                                                 |
+| GET    | `/migrateFiles`        | 3001   | Inserta dentro de la tabla expediente a quienes son docentes.                                      |                                                                                 |
 
 ## Execution
 ### For get methods
