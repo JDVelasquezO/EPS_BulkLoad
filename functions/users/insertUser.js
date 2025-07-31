@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryInsertUser = `
     USE ${process.env.DB_NAME};
@@ -22,4 +23,4 @@ const queryInsertUser = `
     from Temp;
 `;
 
-module.exports = queryInsertUser;
+export default queryInsertUser;

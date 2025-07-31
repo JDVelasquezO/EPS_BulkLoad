@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryMigrateTeacher = `
     USE ${process.env.DB_NAME};
@@ -25,4 +26,4 @@ const queryMigrateTeacher = `
     where uhr.idRol = 3;
 `;
 
-module.exports = queryMigrateTeacher;
+export default queryMigrateTeacher;

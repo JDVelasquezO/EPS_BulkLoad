@@ -1,5 +1,5 @@
-const connPromise = require('../config/conn');
-const queryMigrateTeacher = require('../functions/teacher/migrateTeacher');
+import connPromise from '../config/conn.js';
+import queryMigrateTeacher from '../functions/teacher/migrateTeacher.js';
 
 const controller = {};
 
@@ -27,4 +27,4 @@ controller.migrateTeacher = async (req, res) => {
     }
 }
 
-module.exports = controller;
+export default controller;

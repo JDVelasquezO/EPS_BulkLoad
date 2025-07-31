@@ -12,4 +12,4 @@ const queryInsertMeritoAndGetDependency = `
     where ur.idUsuario in (?);
 `;
 
-module.exports = queryInsertMeritoAndGetDependency;
+export default queryInsertMeritoAndGetDependency;

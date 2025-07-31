@@ -1,7 +1,7 @@
-const connPromise = require("../config/conn");
-const queryCreatePersonal = require("../functions/personal/createPersonal");
-const fs = require("fs");
-const path = require('path');
+import connPromise from '../config/conn.js';
+import queryCreatePersonal from '../functions/personal/createPersonal.js';
+import fs from 'fs';
+import path from 'path';
 
 const controller = {};
 
@@ -94,4 +94,4 @@ controller.updatePersonal = async (req, res) => {
     }
 }
 
-module.exports = controller;
+export default controller;

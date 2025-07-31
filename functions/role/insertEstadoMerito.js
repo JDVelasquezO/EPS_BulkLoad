@@ -14,4 +14,4 @@ const queryInsertEstadoMerito = `
     where idUnidadAcademica in (?) and uau.idUsuario > 11;
 `;
 
-module.exports = queryInsertEstadoMerito;
+export default queryInsertEstadoMerito;

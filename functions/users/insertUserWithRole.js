@@ -1,5 +1,6 @@
 // {"users": "[39]", "role": "3"}'
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryInsertUserWithRole = `
     USE ${process.env.DB_NAME};
@@ -16,4 +17,4 @@ const queryInsertUserWithRole = `
     );
 `;
 
-module.exports = queryInsertUserWithRole;
+export default queryInsertUserWithRole;

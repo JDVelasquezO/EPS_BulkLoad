@@ -1,6 +1,8 @@
-const mysql = require("mysql2/promise");
-const fs = require("fs");
-require("dotenv").config();
+import mysql from 'mysql2/promise';
+import fs from 'fs';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function validateEnvVars() {
     const required = ["DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME"];
@@ -33,4 +35,4 @@ const connPromise = (async () => {
     }
 })();
 
-module.exports = connPromise;
+export default connPromise;

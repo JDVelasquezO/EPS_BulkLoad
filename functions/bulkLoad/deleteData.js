@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryDeleteDataUser = `
     USE ${process.env.DB_NAME};
@@ -11,4 +12,4 @@ const queryDeleteDataUser = `
     drop table if exists temp_code_dependency;
 `;
 
-module.exports = queryDeleteDataUser;
+export default queryDeleteDataUser;

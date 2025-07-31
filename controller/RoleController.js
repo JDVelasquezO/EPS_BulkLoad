@@ -1,8 +1,9 @@
-const connPromise = require("../config/conn");
-const queryInsertRoleByUnity = require("../functions/role/insertRoleByUnities");
-const queryInsertEstadoMerito = require("../functions/role/insertEstadoMerito");
-const queryDeleteRoleByUnity = require("../functions/role/deleteRoleByUnities");
-const {validateAndParseBody} = require("../methods/validateAndParseBody");
+import connPromise from '../config/conn.js';
+import queryInsertRoleByUnity from '../functions/role/insertRoleByUnities.js';
+import queryInsertEstadoMerito from '../functions/role/insertEstadoMerito.js';
+import queryDeleteRoleByUnity from '../functions/role/deleteRoleByUnities.js';
+import { validateAndParseBody } from '../methods/validateAndParseBody.js';
+
 const controller = {};
 
 controller.insertRoleByAcademy = async (req, res, next) => {
@@ -78,4 +79,4 @@ controller.deleteRoleByAcademy = async (req, res) => {
     }
 }
 
-module.exports = controller;
+export default controller;

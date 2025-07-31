@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryDeleteRoleByUnity = `
     USE ${process.env.DB_NAME};
@@ -9,4 +10,4 @@ const queryDeleteRoleByUnity = `
     ) and idRol = ?;
 `;
 
-module.exports = queryDeleteRoleByUnity;
+export default queryDeleteRoleByUnity;

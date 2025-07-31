@@ -1,10 +1,11 @@
-const connPromise = require("../config/conn");
-const queryInsertUser = require("../functions/users/insertUser");
-const queryInsertUserRol = require("../functions/users/insertUserHasRole");
-const queryInsertAcademy = require("../functions/users/insertAcademyHasUser");
-const queryInsertUserWithRole = require("../functions/users/insertUserWithRole");
-// const queryInsertEstadoMerito = require("../functions/role/insertEstadoMerito");
-const queryInsertMeritoAndGetDependency = require("../functions/role/insertMeritoAndGetDependency");
+import connPromise from '../config/conn.js';
+import queryInsertUser from '../functions/users/insertUser.js';
+import queryInsertUserRol from '../functions/users/insertUserHasRole.js';
+import queryInsertAcademy from '../functions/users/insertAcademyHasUser.js';
+import queryInsertUserWithRole from '../functions/users/insertUserWithRole.js';
+// import queryInsertEstadoMerito from '../functions/role/insertEstadoMerito.js';
+import queryInsertMeritoAndGetDependency from '../functions/role/insertMeritoAndGetDependency.js';
+
 const controller = {};
 
 controller.insertUser = async (req, res) => {
@@ -152,4 +153,4 @@ controller.insertUserWithRole = async (req, res, next) => {
     }
 };
 
-module.exports = controller;
+export default controller;

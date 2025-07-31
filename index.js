@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = process.env.PORT || 3001;
-const routes = require('./routes/router');
+import routes from './routes/router.js';
 
 try {
     app.use(express.urlencoded({ extended: true }));

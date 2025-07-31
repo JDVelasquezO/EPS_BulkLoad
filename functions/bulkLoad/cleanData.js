@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryCleanUser = `
     USE ${process.env.DB_NAME};
@@ -27,4 +28,4 @@ const queryCleanUser = `
     update Temp set EMAIL = CONCAT(REGISTRO, '@ingenieria.usac.edu.gt') where EMAIL like '\r%';
 `;
 
-module.exports = queryCleanUser;
+export default queryCleanUser;

@@ -1,5 +1,5 @@
-const connPromise = require('../config/conn');
-const queryMigrateFiles = require('../functions/files/migrateFiles');
+import connPromise from '../config/conn.js';
+import queryMigrateFiles from '../functions/files/migrateFiles.js';
 
 const controller = {};
 
@@ -27,4 +27,4 @@ controller.migrateFiles = async (req, res) => {
     }
 }
 
-module.exports = controller;
+export default controller;

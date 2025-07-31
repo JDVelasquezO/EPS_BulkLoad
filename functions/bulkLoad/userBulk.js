@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryUserBulk = `
     USE ${process.env.DB_NAME};
@@ -24,4 +25,4 @@ const queryUserBulk = `
     IGNORE 1 LINES
     (REGISTRO, CUI, NOMBRE_COMPLETO, FECHA_NAC, CODIGO, DEPENDENCIA, EMAIL)`;
 
-module.exports = queryUserBulk;
+export default queryUserBulk;

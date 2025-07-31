@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryInsertAcademy = `
     USE ${process.env.DB_NAME};
@@ -31,4 +32,4 @@ const queryInsertAcademy = `
     where ua.idUnidadAcademica in (?);
 `;
 
-module.exports = queryInsertAcademy;
+export default queryInsertAcademy;

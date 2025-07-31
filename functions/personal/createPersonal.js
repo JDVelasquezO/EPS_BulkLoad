@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryCreatePersonal = `
     USE ${process.env.DB_NAME};
@@ -17,4 +18,4 @@ const queryCreatePersonal = `
     );
 `;
 
-module.exports = queryCreatePersonal;
+export default queryCreatePersonal;

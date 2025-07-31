@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryMigrateFiles = `
     USE ${process.env.DB_NAME};
@@ -10,4 +11,4 @@ const queryMigrateFiles = `
     from docentes_temp;
 `;
 
-module.exports = queryMigrateFiles;
+export default queryMigrateFiles;

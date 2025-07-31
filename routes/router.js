@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
+import bulkLoadController from '../controller/BulkLoadController.js';
+import userController from '../controller/UserController.js';
+import roleController from '../controller/RoleController.js';
+import personalController from '../controller/PersonalController.js';
+import teacherController from '../controller/TeacherController.js';
+import filesController from '../controller/FilesController.js';
+
 const router = express.Router();
-const bulkLoadController = require('../controller/BulkLoadController');
-const userController = require('../controller/UserController');
-const roleController = require('../controller/RoleController');
-const personalController = require('../controller/PersonalController');
-const teacherController = require('../controller/TeacherController');
-const filesController = require('../controller/FilesController');
 
 router.get('/', (req, res) => {
     res.json('It works');
@@ -27,4 +28,4 @@ router.put('/updatePersonal', personalController.updatePersonal);
 router.get('/migrateTeacher', teacherController.migrateTeacher);
 router.get('/migrateFiles', filesController.migrateFiles);
 
-module.exports = router;
+export default router;

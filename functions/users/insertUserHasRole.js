@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const queryInsertUserRol = `
     USE ${process.env.DB_NAME};
@@ -16,4 +17,4 @@ const queryInsertUserRol = `
     );
 `;
 
-module.exports = queryInsertUserRol;
+export default queryInsertUserRol;

@@ -1,7 +1,7 @@
-const connPromise = require("../config/conn");
-const queryUserBulk = require("../functions/bulkLoad/userBulk");
-const queryCleanUser = require("../functions/bulkLoad/cleanData");
-const queryDeleteDataUser = require("../functions/bulkLoad/deleteData");
+import connPromise from '../config/conn.js';
+import queryUserBulk from '../functions/bulkLoad/userBulk.js';
+import queryCleanUser from '../functions/bulkLoad/cleanData.js';
+import queryDeleteDataUser from '../functions/bulkLoad/deleteData.js';
 const controller = {};
 
 controller.bulkLoadUsers = async (req, res) => {
@@ -95,4 +95,4 @@ controller.deleteDataUser = async (req, res) => {
     }
 }
 
-module.exports = controller;
+export default controller;
