@@ -5,6 +5,7 @@ import roleController from '../controller/RoleController.js';
 import personalController from '../controller/PersonalController.js';
 import teacherController from '../controller/TeacherController.js';
 import filesController from '../controller/FilesController.js';
+import promotionsController from '../controller/PromotionsController.js';
 
 const router = express.Router();
 
@@ -27,5 +28,7 @@ router.put('/updatePersonal', personalController.updatePersonal);
 
 router.get('/migrateTeacher', teacherController.migrateTeacher);
 router.get('/migrateFiles', filesController.migrateFiles);
+
+router.post('/insertReqPromotions', promotionsController.insertReqPromotions);
 
 export default router;
